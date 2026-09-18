@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokéthology - Dreams & Adventures</title>
     
-    <!-- Favicon -->
+    <!-- Favicon per la scheda del browser -->
     <link rel="icon" type="image/png" href="Logo Pokéthology.png">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
@@ -18,12 +18,10 @@
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
             position: relative;
         }
 
-        /* Effetti di luce di sfondo */
+        /* Effetti luce di sfondo */
         .glow-circle-1 {
             position: fixed;
             top: -10%; left: 50%;
@@ -35,6 +33,306 @@
         }
         .glow-circle-2 {
             position: fixed;
+            bottom: -15%; right: 10%;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(6,182,212,0.08) 0%, rgba(2,6,23,0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Contenitore */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 5rem;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Hero */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        .app-icon {
+            width: 230px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255,255,255,0.12);
+            margin-bottom: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .app-icon:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(168, 85, 247, 0.3), 0 0 0 1px rgba(255,255,255,0.25);
+        }
+
+        .subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+            font-weight: 700;
+            color: #a855f7;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 6vw, 4.2rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .intro-text {
+            font-size: clamp(1.05rem, 3vw, 1.2rem);
+            color: #94a3b8;
+            max-width: 680px;
+            line-height: 1.65;
+            margin-bottom: 24px;
+        }
+
+        .notice-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 16px;
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            color: #fca5a5;
+            margin-bottom: 28px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Pulsante Google Play */
+        .play-badge-link {
+            display: inline-block;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+        .play-badge-link:hover {
+            transform: scale(1.03);
+            filter: drop-shadow(0 10px 20px rgba(6, 182, 212, 0.25));
+        }
+        .play-badge-img {
+            height: 62px;
+            width: auto;
+        }
+
+        /* Intestazione Sezione */
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .section-header h2 {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #f1f5f9;
+            margin-bottom: 8px;
+        }
+        .section-header p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* Griglia Card */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 20px;
+            padding: 1.8rem;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.4), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(168, 85, 247, 0.3);
+            box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.5);
+        }
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #22d3ee;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 0.75rem;
+        }
+        .feature-card p {
+            font-size: 0.92rem;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        /* Banner Mikel Music (elemento finale del sito) */
+        .music-banner {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(30, 27, 75, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            border-radius: 20px;
+            padding: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            box-shadow: 0 20px 40px -10px rgba(168, 85, 247, 0.18);
+        }
+        .music-banner h3 {
+            font-size: 1.35rem;
+            color: #e9d5ff;
+            font-weight: 700;
+        }
+        .music-banner p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-circle-1"></div>
+    <div class="glow-circle-2"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <img class="app-icon" src="Logo Pokéthology.png" alt="Pokéthology App Icon">
+            
+            <div class="subtitle">Where Dreams and Adventures begins! 💛💭</div>
+            <h1>Pokéthology</h1>
+            
+            <p class="intro-text">
+                From the original 151 through the entire World! An ambitious fan-made project aiming to take a step above in a complete exploration of Pokémon, both analytically and beyond.
+            </p>
+
+            <div class="notice-pill">
+                ⚠️ Notice: if the app doesn't open at first try or it's blocked, close it and repeat.
+            </div>
+
+            <a href="https://play.google.com/store/apps/details?id=com.pokethology.app" class="play-badge-link" target="_blank" rel="noopener noreferrer">
+                <img class="play-badge-img" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png">
+            </a>
+        </header>
+
+        <!-- Main Features -->
+        <main>
+            <div class="section-header">
+                <h2>Features & Sections</h2>
+                <p>Everything inside Pokéthology</p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Pokéthology Section -->
+                <article class="feature-card">
+                    <span class="card-tag">Gemini AI</span>
+                    <h3>Pokéthology Section</h3>
+                    <p>The beating heart of the project. Features a personal chatbot called Pokéthology AI using Google's Gemini, specially trained with Pokémon knowledge and FAQs to ensure deep insights for fans and curious trainers alike.</p>
+                </article>
+
+                <!-- Combat Section -->
+                <article class="feature-card">
+                    <span class="card-tag">1v1 Simulator</span>
+                    <h3>Combat Section</h3>
+                    <p>A dynamic and fast 1v1 battle simulator with options for 3D models or Original Sprites. Includes random setups and a "Chaos Mode" for unpredictable surprise matchups tied into daily arena missions.</p>
+                </article>
+
+                <!-- Stats Section -->
+                <article class="feature-card">
+                    <span class="card-tag">Full Database</span>
+                    <h3>Stats Section</h3>
+                    <p>Detailed analysis for every single Pokémon, including Mega and Gigantamax forms. Inspect moves, types, base stats, and original game descriptions, with a dedicated tool to compare two Pokémon side-by-side.</p>
+                </article>
+
+                <!-- Daily Hub Section -->
+                <article class="feature-card">
+                    <span class="card-tag">Missions</span>
+                    <h3>Daily Hub Section</h3>
+                    <p>The control center for fresh daily objectives. Tackles unique Pokémon Theory questions and high-stakes battle scenarios. Reaching Master rank will test your dedication to the limit!</p>
+                </article>
+
+                <!-- Theory Exam Section -->
+                <article class="feature-card">
+                    <span class="card-tag">Trivia Challenge</span>
+                    <h3>Theory Exam Section</h3>
+                    <p>A true intellectual challenge spanning across all Pokémon regions. Tackle 3 unique questions per region each day—a total of 27 questions to prove your mastery.</p>
+                </article>
+
+                <!-- Daily Scan Section -->
+                <article class="feature-card">
+                    <span class="card-tag">Daily Discovery</span>
+                    <h3>Daily Scan Section</h3>
+                    <p>Randomly spotlights and scans a Pokémon each day from the entire roster. Discover new species, analyze their attributes, and jump straight into battle if inspiration strikes.</p>
+                </article>
+
+                <!-- Pokéthology Mission Section -->
+                <article class="feature-card">
+                    <span class="card-tag">Master Ball Challenge</span>
+                    <h3>Pokéthology Mission Section</h3>
+                    <p>Win at least one arena battle with every type and every single Pokémon in the Pokédex, including alternative forms. Resets monthly—aim for the top Master Ball rank!</p>
+                </article>
+
+                <!-- Avatar & Favorites -->
+                <article class="feature-card">
+                    <span class="card-tag">Profile & Teams</span>
+                    <h3>Avatar & Favorites Section</h3>
+                    <p>Equip classic protagonist or antagonist avatars with original sprites and lore descriptions. Save your favorite team members with quick-access shortcuts straight into stats or battle arena.</p>
+                </article>
+
+                <!-- Mikel's Music (Fine Pagina) -->
+                <article class="music-banner">
+                    <span class="card-tag" style="color: #c084fc;">Original Soundtrack</span>
+                    <h3>Mikel's Music 🎧</h3>
+                    <p>Endlessly grateful to Mikel for featuring his famous "Poké & Chill" playlist (over 8 million views on YouTube) as the official soundtrack. Manage audio directly in the app settings: pick individual tracks, loop, or shuffle the full playlist while exploring.</p>
+                </article>
+            </div>
+        </main>
+    </div>
+</body>
+</html>            position: fixed;
             bottom: -15%; right: 10%;
             width: 800px; height: 800px;
             background: radial-gradient(circle, rgba(6,182,212,0.08) 0%, rgba(2,6,23,0) 70%);
