@@ -226,7 +226,15 @@
             font-size: 0.95rem;
             line-height: 1.65;
         }
-
+         /* Footer / Copyright */
+        footer {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            z-index: 10;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: rgba(2,6,23,0.5);
+            backdrop-filter: blur(10px);
+        }
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -329,13 +337,13 @@
                     <p>Endlessly grateful to Mikel for featuring his famous "Poké & Chill" playlist as the official soundtrack. Manage audio directly in the app settings: pick individual tracks, loop, or shuffle the full playlist while exploring.</p>
                 </article>
             </div>
-                <footer>
+        </main>
+        <footer>
         <div class="copyright-text">
             Pokémon and Pokémon character names are trademarks of Nintendo. No copyright infringement intended.<br>
             Images and sounds used in this app are copyrighted and are supported under fair use.
             <span class="copyright-highlight">Pokémon © 2002-2026 Pokémon. © 1995-2026 Nintendo/Creatures Inc./GAME FREAK inc.</span>
         </div>
-    </footer>
-        </main>
+        </footer>
 </body>
 </html>
